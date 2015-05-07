@@ -1,0 +1,408 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		47006E0D1AFAE393009F36E0 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47006E0C1AFAE393009F36E0 /* AppDelegate.swift */; };
+		47006E0F1AFAE393009F36E0 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 47006E0E1AFAE393009F36E0 /* Images.xcassets */; };
+		47006E121AFAE393009F36E0 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 47006E101AFAE393009F36E0 /* MainMenu.xib */; };
+		47006E1E1AFAE393009F36E0 /* Compute_for_Humanity_Menu_BarTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47006E1D1AFAE393009F36E0 /* Compute_for_Humanity_Menu_BarTests.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		47006E181AFAE393009F36E0 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 47006DFF1AFAE393009F36E0 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 47006E061AFAE393009F36E0;
+			remoteInfo = "Compute for Humanity Menu Bar";
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		47006E071AFAE393009F36E0 /* Compute for Humanity Menu Bar.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Compute for Humanity Menu Bar.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		47006E0B1AFAE393009F36E0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		47006E0C1AFAE393009F36E0 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		47006E0E1AFAE393009F36E0 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		47006E111AFAE393009F36E0 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/MainMenu.xib; sourceTree = "<group>"; };
+		47006E171AFAE393009F36E0 /* Compute for Humanity Menu BarTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Compute for Humanity Menu BarTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		47006E1C1AFAE393009F36E0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		47006E1D1AFAE393009F36E0 /* Compute_for_Humanity_Menu_BarTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Compute_for_Humanity_Menu_BarTests.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		47006E041AFAE393009F36E0 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		47006E141AFAE393009F36E0 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		47006DFE1AFAE393009F36E0 = {
+			isa = PBXGroup;
+			children = (
+				47006E091AFAE393009F36E0 /* Compute for Humanity Menu Bar */,
+				47006E1A1AFAE393009F36E0 /* Compute for Humanity Menu BarTests */,
+				47006E081AFAE393009F36E0 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		47006E081AFAE393009F36E0 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				47006E071AFAE393009F36E0 /* Compute for Humanity Menu Bar.app */,
+				47006E171AFAE393009F36E0 /* Compute for Humanity Menu BarTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		47006E091AFAE393009F36E0 /* Compute for Humanity Menu Bar */ = {
+			isa = PBXGroup;
+			children = (
+				47006E0C1AFAE393009F36E0 /* AppDelegate.swift */,
+				47006E0E1AFAE393009F36E0 /* Images.xcassets */,
+				47006E101AFAE393009F36E0 /* MainMenu.xib */,
+				47006E0A1AFAE393009F36E0 /* Supporting Files */,
+			);
+			path = "Compute for Humanity Menu Bar";
+			sourceTree = "<group>";
+		};
+		47006E0A1AFAE393009F36E0 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				47006E0B1AFAE393009F36E0 /* Info.plist */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		47006E1A1AFAE393009F36E0 /* Compute for Humanity Menu BarTests */ = {
+			isa = PBXGroup;
+			children = (
+				47006E1D1AFAE393009F36E0 /* Compute_for_Humanity_Menu_BarTests.swift */,
+				47006E1B1AFAE393009F36E0 /* Supporting Files */,
+			);
+			path = "Compute for Humanity Menu BarTests";
+			sourceTree = "<group>";
+		};
+		47006E1B1AFAE393009F36E0 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				47006E1C1AFAE393009F36E0 /* Info.plist */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		47006E061AFAE393009F36E0 /* Compute for Humanity Menu Bar */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 47006E211AFAE393009F36E0 /* Build configuration list for PBXNativeTarget "Compute for Humanity Menu Bar" */;
+			buildPhases = (
+				47006E031AFAE393009F36E0 /* Sources */,
+				47006E041AFAE393009F36E0 /* Frameworks */,
+				47006E051AFAE393009F36E0 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "Compute for Humanity Menu Bar";
+			productName = "Compute for Humanity Menu Bar";
+			productReference = 47006E071AFAE393009F36E0 /* Compute for Humanity Menu Bar.app */;
+			productType = "com.apple.product-type.application";
+		};
+		47006E161AFAE393009F36E0 /* Compute for Humanity Menu BarTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 47006E241AFAE393009F36E0 /* Build configuration list for PBXNativeTarget "Compute for Humanity Menu BarTests" */;
+			buildPhases = (
+				47006E131AFAE393009F36E0 /* Sources */,
+				47006E141AFAE393009F36E0 /* Frameworks */,
+				47006E151AFAE393009F36E0 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				47006E191AFAE393009F36E0 /* PBXTargetDependency */,
+			);
+			name = "Compute for Humanity Menu BarTests";
+			productName = "Compute for Humanity Menu BarTests";
+			productReference = 47006E171AFAE393009F36E0 /* Compute for Humanity Menu BarTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		47006DFF1AFAE393009F36E0 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0620;
+				ORGANIZATIONNAME = "Jacob Evelyn";
+				TargetAttributes = {
+					47006E061AFAE393009F36E0 = {
+						CreatedOnToolsVersion = 6.2;
+					};
+					47006E161AFAE393009F36E0 = {
+						CreatedOnToolsVersion = 6.2;
+						TestTargetID = 47006E061AFAE393009F36E0;
+					};
+				};
+			};
+			buildConfigurationList = 47006E021AFAE393009F36E0 /* Build configuration list for PBXProject "Compute for Humanity Menu Bar" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 47006DFE1AFAE393009F36E0;
+			productRefGroup = 47006E081AFAE393009F36E0 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				47006E061AFAE393009F36E0 /* Compute for Humanity Menu Bar */,
+				47006E161AFAE393009F36E0 /* Compute for Humanity Menu BarTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		47006E051AFAE393009F36E0 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				47006E0F1AFAE393009F36E0 /* Images.xcassets in Resources */,
+				47006E121AFAE393009F36E0 /* MainMenu.xib in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		47006E151AFAE393009F36E0 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		47006E031AFAE393009F36E0 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				47006E0D1AFAE393009F36E0 /* AppDelegate.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		47006E131AFAE393009F36E0 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				47006E1E1AFAE393009F36E0 /* Compute_for_Humanity_Menu_BarTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		47006E191AFAE393009F36E0 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 47006E061AFAE393009F36E0 /* Compute for Humanity Menu Bar */;
+			targetProxy = 47006E181AFAE393009F36E0 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		47006E101AFAE393009F36E0 /* MainMenu.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				47006E111AFAE393009F36E0 /* Base */,
+			);
+			name = MainMenu.xib;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		47006E1F1AFAE393009F36E0 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "-";
+				COPY_PHASE_STRIP = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.9;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = macosx;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		47006E201AFAE393009F36E0 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "-";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.9;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = macosx;
+			};
+			name = Release;
+		};
+		47006E221AFAE393009F36E0 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				COMBINE_HIDPI_IMAGES = YES;
+				INFOPLIST_FILE = "Compute for Humanity Menu Bar/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		47006E231AFAE393009F36E0 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				COMBINE_HIDPI_IMAGES = YES;
+				INFOPLIST_FILE = "Compute for Humanity Menu Bar/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+		47006E251AFAE393009F36E0 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				COMBINE_HIDPI_IMAGES = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
+					"$(inherited)",
+				);
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = "Compute for Humanity Menu BarTests/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Compute for Humanity Menu Bar.app/Contents/MacOS/Compute for Humanity Menu Bar";
+			};
+			name = Debug;
+		};
+		47006E261AFAE393009F36E0 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				COMBINE_HIDPI_IMAGES = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = "Compute for Humanity Menu BarTests/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Compute for Humanity Menu Bar.app/Contents/MacOS/Compute for Humanity Menu Bar";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		47006E021AFAE393009F36E0 /* Build configuration list for PBXProject "Compute for Humanity Menu Bar" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				47006E1F1AFAE393009F36E0 /* Debug */,
+				47006E201AFAE393009F36E0 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		47006E211AFAE393009F36E0 /* Build configuration list for PBXNativeTarget "Compute for Humanity Menu Bar" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				47006E221AFAE393009F36E0 /* Debug */,
+				47006E231AFAE393009F36E0 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		47006E241AFAE393009F36E0 /* Build configuration list for PBXNativeTarget "Compute for Humanity Menu BarTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				47006E251AFAE393009F36E0 /* Debug */,
+				47006E261AFAE393009F36E0 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 47006DFF1AFAE393009F36E0 /* Project object */;
+}
