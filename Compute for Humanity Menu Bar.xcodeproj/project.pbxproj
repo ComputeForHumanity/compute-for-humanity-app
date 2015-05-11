@@ -8,9 +8,10 @@
 
 /* Begin PBXBuildFile section */
 		47006E0D1AFAE393009F36E0 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47006E0C1AFAE393009F36E0 /* AppDelegate.swift */; };
-		47006E0F1AFAE393009F36E0 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 47006E0E1AFAE393009F36E0 /* Images.xcassets */; };
 		47006E121AFAE393009F36E0 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 47006E101AFAE393009F36E0 /* MainMenu.xib */; };
 		47006E1E1AFAE393009F36E0 /* Compute_for_Humanity_Menu_BarTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47006E1D1AFAE393009F36E0 /* Compute_for_Humanity_Menu_BarTests.swift */; };
+		477AD3551AFFCE09001D1E43 /* minerd in Resources */ = {isa = PBXBuildFile; fileRef = 477AD3541AFFCE09001D1E43 /* minerd */; };
+		477FCB751B00354F000311D5 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 477FCB741B00354F000311D5 /* Images.xcassets */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -27,11 +28,12 @@
 		47006E071AFAE393009F36E0 /* Compute for Humanity Menu Bar.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Compute for Humanity Menu Bar.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		47006E0B1AFAE393009F36E0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		47006E0C1AFAE393009F36E0 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		47006E0E1AFAE393009F36E0 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		47006E111AFAE393009F36E0 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/MainMenu.xib; sourceTree = "<group>"; };
 		47006E171AFAE393009F36E0 /* Compute for Humanity Menu BarTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Compute for Humanity Menu BarTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		47006E1C1AFAE393009F36E0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		47006E1D1AFAE393009F36E0 /* Compute_for_Humanity_Menu_BarTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Compute_for_Humanity_Menu_BarTests.swift; sourceTree = "<group>"; };
+		477AD3541AFFCE09001D1E43 /* minerd */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.executable"; name = minerd; path = ../minerd; sourceTree = "<group>"; };
+		477FCB741B00354F000311D5 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -74,8 +76,9 @@
 			isa = PBXGroup;
 			children = (
 				47006E0C1AFAE393009F36E0 /* AppDelegate.swift */,
-				47006E0E1AFAE393009F36E0 /* Images.xcassets */,
+				477FCB741B00354F000311D5 /* Images.xcassets */,
 				47006E101AFAE393009F36E0 /* MainMenu.xib */,
+				477AD3541AFFCE09001D1E43 /* minerd */,
 				47006E0A1AFAE393009F36E0 /* Supporting Files */,
 			);
 			path = "Compute for Humanity Menu Bar";
@@ -186,7 +189,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				47006E0F1AFAE393009F36E0 /* Images.xcassets in Resources */,
+				477FCB751B00354F000311D5 /* Images.xcassets in Resources */,
+				477AD3551AFFCE09001D1E43 /* minerd in Resources */,
 				47006E121AFAE393009F36E0 /* MainMenu.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -319,7 +323,6 @@
 		47006E221AFAE393009F36E0 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				COMBINE_HIDPI_IMAGES = YES;
 				INFOPLIST_FILE = "Compute for Humanity Menu Bar/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
@@ -330,7 +333,6 @@
 		47006E231AFAE393009F36E0 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				COMBINE_HIDPI_IMAGES = YES;
 				INFOPLIST_FILE = "Compute for Humanity Menu Bar/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
@@ -393,6 +395,7 @@
 				47006E231AFAE393009F36E0 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		47006E241AFAE393009F36E0 /* Build configuration list for PBXNativeTarget "Compute for Humanity Menu BarTests" */ = {
 			isa = XCConfigurationList;
@@ -401,6 +404,7 @@
 				47006E261AFAE393009F36E0 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
