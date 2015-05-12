@@ -19,7 +19,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     
     let task = NSTask() // The miner process.
     
-    var miningPaused = false
+    var resumeTimer : NSTimer = NSTimer()
 
     // Fired when the application launches.
     func applicationDidFinishLaunching(aNotification: NSNotification) {
@@ -45,15 +45,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     
     // Initialize the creation and scheduling of the miner process.
     func initializeMiner() {
-        // Every 60 seconds, resume the suspended miner process.
-        let resumeTimer = NSTimer.scheduledTimerWithTimeInterval(
-            60,
-            target: self,
-            selector: Selector("resumeMining"),
-            userInfo: nil,
-            repeats: true
-        )
-        resumeTimer.tolerance = 10 // We're not picky about timing.
+        initializeMinerResumeTimer()
         
         // Get the fully qualified path to the miner.
         let bundle = NSBundle.mainBundle()
@@ -76,6 +68,18 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         pauseMining()
     }
 
+    func initializeMinerResumeTimer() {
+        // Every 60 seconds, resume the suspended miner process.
+        resumeTimer = NSTimer.scheduledTimerWithTimeInterval(
+            60,
+            target: self,
+            selector: Selector("resumeMining"),
+            userInfo: nil,
+            repeats: true
+        )
+        resumeTimer.tolerance = 10 // We're not picky about timing.
+    }
+
     // Fired when the app is terminated. Shuts down the miner process.
     func applicationWillTerminate(aNotification: NSNotification) {
         terminateMiner()
@@ -83,19 +87,17 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     
     // Resume the suspended miner process (unless we're paused).
     func resumeMining() {
-        if !miningPaused { // Don't resume mining if paused.
-            // Here we resume the miner process and pause it in ten seconds.
-            let pauseTimer = NSTimer.scheduledTimerWithTimeInterval(
-                10,
-                target: self,
-                selector: Selector("pauseMining"),
-                userInfo: nil,
-                repeats: false
-            )
-            pauseTimer.tolerance = 1 // We're not picky about timing.
-            
-            task.resume() // Let's go!
-        }
+        // Here we resume the miner process and pause it in ten seconds.
+        let pauseTimer = NSTimer.scheduledTimerWithTimeInterval(
+            10,
+            target: self,
+            selector: Selector("pauseMining"),
+            userInfo: nil,
+            repeats: false
+        )
+        pauseTimer.tolerance = 1 // We're not picky about timing.
+        
+        task.resume() // Let's go!
     }
     
     // Suspend the miner process.
@@ -117,9 +119,13 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     
     // Fired when the "Pause" item is checked/unchecked.
     @IBAction func pauseResumeClicked(sender: NSMenuItem) {
-        sender.state = (sender.state == NSOnState) ? NSOffState : NSOnState
-        
-        miningPaused = !miningPaused
+        if sender.state == NSOnState {
+            sender.state = NSOffState
+            initializeMinerResumeTimer()
+        } else {
+            sender.state = NSOnState
+            resumeTimer.invalidate()
+        }
     }
     
     // Fired when the "Quit" item is selected.
