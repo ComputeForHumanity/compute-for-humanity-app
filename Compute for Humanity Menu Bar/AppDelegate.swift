@@ -114,6 +114,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 
     // Fired when the "About Compute for Humanity" item is selected.
     @IBAction func aboutClicked(sender: NSMenuItem) {
+        NSApplication.sharedApplication().activateIgnoringOtherApps(true)
         aboutPanel.makeKeyAndOrderFront(sender)
     }
     
