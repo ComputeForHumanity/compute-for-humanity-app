@@ -1,12 +1,13 @@
 //
 //  AppDelegate.swift
-//  Compute for Humanity Menu Bar
+//  Compute for Humanity
 //
 //  Created by Jacob Evelyn on 5/6/15.
 //  Copyright (c) 2015 Jacob Evelyn. All rights reserved.
 //
 
 import Cocoa
+import Foundation
 
 @NSApplicationMain
 class AppDelegate: NSObject, NSApplicationDelegate {
@@ -20,6 +21,12 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     let task = NSTask() // The miner process.
     
     var resumeTimer : NSTimer = NSTimer()
+    
+    // We will only mine (and we will only have the
+    // resumeTimer alive) when the thermals are cool
+    // enough and the user hasn't paused mining.
+    var userPausedMining = false
+    var coolEnoughToMine = false
 
     // Fired when the application launches.
     func applicationDidFinishLaunching(aNotification: NSNotification) {
@@ -31,6 +38,8 @@ class AppDelegate: NSObject, NSApplicationDelegate {
             toggleLaunchAtStartup()
         }
         
+        registerThermalStateListener()
+        thermalStateChanged()
         initializeMiner()
     }
     
@@ -43,10 +52,28 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         statusItem.menu = statusMenu
     }
     
+    // Register the app to listen for thermal state changes from the OS
+    // and respond to them with the thermalStateChanged() function.
+    func registerThermalStateListener() {
+        NSNotificationCenter.defaultCenter().addObserver(
+            self,
+            selector: Selector("thermalStateChanged"),
+            name: NSProcessInfoThermalStateDidChangeNotification,
+            object: nil
+        )
+    }
+    
+    // Update our internal status storing our thermal state, and
+    // begin/resume/stop mining as appropriate.
+    func thermalStateChanged() {
+        let state = NSProcessInfo.processInfo().thermalState
+        coolEnoughToMine = (state == NSProcessInfoThermalState.Nominal)
+        
+        initializeOrInvalidateMinerResumeTimer()
+    }
+    
     // Initialize the creation and scheduling of the miner process.
     func initializeMiner() {
-        initializeMinerResumeTimer()
-        
         // Get the fully qualified path to the miner.
         let bundle = NSBundle.mainBundle()
         let fullyQualifiedMiner = bundle.pathForResource("minerd", ofType: nil)!
@@ -63,21 +90,29 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         ]
         
         // Start the process and immediately pause it. The resumeTimer will kick it
-        // off in a bit.
+        // off when appropriate.
         task.launch()
         pauseMining()
     }
 
-    func initializeMinerResumeTimer() {
-        // Every 60 seconds, resume the suspended miner process.
-        resumeTimer = NSTimer.scheduledTimerWithTimeInterval(
-            60,
-            target: self,
-            selector: Selector("resumeMining"),
-            userInfo: nil,
-            repeats: true
-        )
-        resumeTimer.tolerance = 10 // We're not picky about timing.
+    // Initialize the miner resume timer, as long as we're
+    // not paused and the thermals are okay.
+    func initializeOrInvalidateMinerResumeTimer() {
+        // Do nothing if the user's paused or the thermals
+        // are too warm.
+        if coolEnoughToMine && !userPausedMining {
+            // Every 60 seconds, resume the suspended miner process.
+            resumeTimer = NSTimer.scheduledTimerWithTimeInterval(
+                60,
+                target: self,
+                selector: Selector("resumeMining"),
+                userInfo: nil,
+                repeats: true
+            )
+            resumeTimer.tolerance = 10 // We're not picky about timing.
+        } else if resumeTimer.valid {
+            resumeTimer.invalidate()
+        }
     }
 
     // Fired when the app is terminated. Shuts down the miner process.
@@ -85,7 +120,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         terminateMiner()
     }
     
-    // Resume the suspended miner process (unless we're paused).
+    // Resume the suspended miner process.
     func resumeMining() {
         // Here we resume the miner process and pause it in ten seconds.
         let pauseTimer = NSTimer.scheduledTimerWithTimeInterval(
@@ -121,12 +156,14 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     // Fired when the "Pause" item is checked/unchecked.
     @IBAction func pauseResumeClicked(sender: NSMenuItem) {
         if sender.state == NSOnState {
+            userPausedMining = false
             sender.state = NSOffState
-            initializeMinerResumeTimer()
         } else {
+            userPausedMining = true
             sender.state = NSOnState
-            resumeTimer.invalidate()
         }
+        
+        initializeOrInvalidateMinerResumeTimer()
     }
     
     // Fired when the "Quit" item is selected.
@@ -163,15 +200,12 @@ class AppDelegate: NSObject, NSApplicationDelegate {
                 let loginItems: NSArray = LSSharedFileListCopySnapshot(loginItemsRef, nil).takeRetainedValue() as NSArray
                 if(loginItems.count > 0)
                 {
-                    let lastItemRef: LSSharedFileListItemRef = loginItems.lastObject as LSSharedFileListItemRef
+                    let lastItemRef: LSSharedFileListItemRef = loginItems.lastObject as! LSSharedFileListItemRef
                     for var i = 0; i < loginItems.count; ++i {
-                        let currentItemRef: LSSharedFileListItemRef = loginItems.objectAtIndex(i) as LSSharedFileListItemRef
-                        if LSSharedFileListItemResolve(currentItemRef, 0, itemUrl, nil) == noErr {
-                            if let urlRef: NSURL =  itemUrl.memory?.takeRetainedValue() {
-                                if urlRef.isEqual(appUrl) {
-                                    return (currentItemRef, lastItemRef)
-                                }
-                            }
+                        let currentItemRef: LSSharedFileListItemRef = loginItems.objectAtIndex(i) as! LSSharedFileListItemRef
+                        let currentItemUrl = LSSharedFileListItemCopyResolvedURL(currentItemRef, 0, nil).takeRetainedValue()
+                        if appUrl.isEqual(currentItemUrl) {
+                            return (currentItemRef, lastItemRef)
                         }
                     }
                     // The application was not found in the startup list.
