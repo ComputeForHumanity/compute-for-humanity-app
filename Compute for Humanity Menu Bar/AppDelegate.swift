@@ -14,13 +14,18 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 
     @IBOutlet weak var statusMenu: NSMenu!
     @IBOutlet weak var aboutPanel: NSPanel!
+    @IBOutlet weak var downloadWindow: NSWindow!
+    
+    let version = "1.0"
     
     // The status bar item for this menu.
     let statusItem = NSStatusBar.systemStatusBar().statusItemWithLength(-1)
     
     let task = NSTask() // The miner process.
     
-    var resumeTimer : NSTimer = NSTimer()
+    let baseServerUrl: String = "http://localhost:3001"
+    
+    var resumeTimer: NSTimer = NSTimer()
     
     // We will only mine (and we will only have the
     // resumeTimer alive) when the thermals are cool
@@ -41,6 +46,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         registerThermalStateListener()
         thermalStateChanged()
         initializeMiner()
+        checkForUpdates()
     }
     
     // Initialize the status bar icon for this app.
@@ -93,6 +99,29 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         // off when appropriate.
         task.launch()
         pauseMining()
+    }
+    
+    // Check to see if there is a newer version of the app. If so,
+    // display the download window.
+    func checkForUpdates() {
+        let urlPath: String = baseServerUrl + "/version"
+        var url: NSURL = NSURL(string: urlPath)!
+        var request1: NSURLRequest = NSURLRequest(URL: url)
+        
+        // We use a synchronous request here because displaying the download window
+        // from within an asynchronous request's callback leads to errors.
+        var response: AutoreleasingUnsafeMutablePointer<NSURLResponse?> = nil
+        var data: NSData? =  NSURLConnection.sendSynchronousRequest(request1, returningResponse: response, error:nil)
+        
+        if data != nil {
+            let serverVersion: NSString = NSString(data:data!, encoding:NSUTF8StringEncoding)!
+            let currentVersion = NSBundle.mainBundle().infoDictionary?["CFBundleShortVersionString"] as? String
+            
+            if currentVersion != serverVersion {
+                NSApplication.sharedApplication().activateIgnoringOtherApps(true)
+                self.downloadWindow.makeKeyAndOrderFront(self)
+            }
+        }
     }
 
     // Initialize the miner resume timer, as long as we're
@@ -174,8 +203,14 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     
     // Fired when the website link button within the About panel is selected.
     @IBAction func linkClicked(sender: NSButton) {
-        let url = NSURL(string: "http://www.computeforhumanity.org")
+        let url = NSURL(string: baseServerUrl)
         NSWorkspace.sharedWorkspace().openURL(url!)
+    }
+    
+    @IBAction func downloadClicked(sender: NSButton) {
+        let url = NSURL(string: baseServerUrl + "/download")
+        NSWorkspace.sharedWorkspace().openURL(url!)
+        downloadWindow.close()
     }
     
     ////////////////////////////////////////////////////////////////////////////////////////
@@ -189,8 +224,8 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     
     // Returns a list of references to login items for the current user.
     func itemReferencesInLoginItems() -> (existingReference: LSSharedFileListItemRef?, lastReference: LSSharedFileListItemRef?) {
-        var itemUrl : UnsafeMutablePointer<Unmanaged<CFURL>?> = UnsafeMutablePointer<Unmanaged<CFURL>?>.alloc(1)
-        if let appUrl : NSURL = NSURL.fileURLWithPath(NSBundle.mainBundle().bundlePath) {
+        var itemUrl: UnsafeMutablePointer<Unmanaged<CFURL>?> = UnsafeMutablePointer<Unmanaged<CFURL>?>.alloc(1)
+        if let appUrl: NSURL = NSURL.fileURLWithPath(NSBundle.mainBundle().bundlePath) {
             let loginItemsRef = LSSharedFileListCreate(
                 nil,
                 kLSSharedFileListSessionLoginItems.takeRetainedValue(),
@@ -233,7 +268,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
             ).takeRetainedValue() as LSSharedFileListRef?
         if loginItemsRef != nil {
             if shouldBeToggled {
-                if let appUrl : CFURLRef = NSURL.fileURLWithPath(NSBundle.mainBundle().bundlePath) {
+                if let appUrl: CFURLRef = NSURL.fileURLWithPath(NSBundle.mainBundle().bundlePath) {
                     LSSharedFileListInsertItemURL(
                         loginItemsRef,
                         itemReferences.lastReference,
