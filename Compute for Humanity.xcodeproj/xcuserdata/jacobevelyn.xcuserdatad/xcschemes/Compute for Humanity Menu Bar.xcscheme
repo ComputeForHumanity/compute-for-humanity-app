@@ -15,9 +15,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "47006E061AFAE393009F36E0"
-               BuildableName = "Compute for Humanity Menu Bar.app"
-               BlueprintName = "Compute for Humanity Menu Bar"
-               ReferencedContainer = "container:Compute for Humanity Menu Bar.xcodeproj">
+               BuildableName = "Compute for Humanity.app"
+               BlueprintName = "Compute for Humanity"
+               ReferencedContainer = "container:Compute for Humanity.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
          <BuildActionEntry
@@ -29,9 +29,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "47006E161AFAE393009F36E0"
-               BuildableName = "Compute for Humanity Menu BarTests.xctest"
-               BlueprintName = "Compute for Humanity Menu BarTests"
-               ReferencedContainer = "container:Compute for Humanity Menu Bar.xcodeproj">
+               BuildableName = "Compute for HumanityTests.xctest"
+               BlueprintName = "Compute for HumanityTests"
+               ReferencedContainer = "container:Compute for Humanity.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -47,9 +47,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "47006E161AFAE393009F36E0"
-               BuildableName = "Compute for Humanity Menu BarTests.xctest"
-               BlueprintName = "Compute for Humanity Menu BarTests"
-               ReferencedContainer = "container:Compute for Humanity Menu Bar.xcodeproj">
+               BuildableName = "Compute for HumanityTests.xctest"
+               BlueprintName = "Compute for HumanityTests"
+               ReferencedContainer = "container:Compute for Humanity.xcodeproj">
             </BuildableReference>
          </TestableReference>
       </Testables>
@@ -57,9 +57,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "47006E061AFAE393009F36E0"
-            BuildableName = "Compute for Humanity Menu Bar.app"
-            BlueprintName = "Compute for Humanity Menu Bar"
-            ReferencedContainer = "container:Compute for Humanity Menu Bar.xcodeproj">
+            BuildableName = "Compute for Humanity.app"
+            BlueprintName = "Compute for Humanity"
+            ReferencedContainer = "container:Compute for Humanity.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
    </TestAction>
@@ -77,9 +77,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "47006E061AFAE393009F36E0"
-            BuildableName = "Compute for Humanity Menu Bar.app"
-            BlueprintName = "Compute for Humanity Menu Bar"
-            ReferencedContainer = "container:Compute for Humanity Menu Bar.xcodeproj">
+            BuildableName = "Compute for Humanity.app"
+            BlueprintName = "Compute for Humanity"
+            ReferencedContainer = "container:Compute for Humanity.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
       <AdditionalOptions>
@@ -96,9 +96,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "47006E061AFAE393009F36E0"
-            BuildableName = "Compute for Humanity Menu Bar.app"
-            BlueprintName = "Compute for Humanity Menu Bar"
-            ReferencedContainer = "container:Compute for Humanity Menu Bar.xcodeproj">
+            BuildableName = "Compute for Humanity.app"
+            BlueprintName = "Compute for Humanity"
+            ReferencedContainer = "container:Compute for Humanity.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </ProfileAction>

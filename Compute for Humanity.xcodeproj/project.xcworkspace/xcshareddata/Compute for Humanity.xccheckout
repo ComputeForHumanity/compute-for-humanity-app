@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
+	<false/>
+	<key>IDESourceControlProjectIdentifier</key>
+	<string>C841C3B2-8AAF-4C52-8F6F-B0402C539C5D</string>
+	<key>IDESourceControlProjectName</key>
+	<string>Compute for Humanity</string>
+	<key>IDESourceControlProjectOriginsDictionary</key>
+	<dict>
+		<key>37299CFA57CD5D856D246A890E1C42ABFDA85079</key>
+		<string>bitbucket.org:JacobEvelyn/compute-for-humanity-menu-bar.git</string>
+	</dict>
+	<key>IDESourceControlProjectPath</key>
+	<string>Compute for Humanity.xcodeproj</string>
+	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
+	<dict>
+		<key>37299CFA57CD5D856D246A890E1C42ABFDA85079</key>
+		<string>../..</string>
+	</dict>
+	<key>IDESourceControlProjectURL</key>
+	<string>bitbucket.org:JacobEvelyn/compute-for-humanity-menu-bar.git</string>
+	<key>IDESourceControlProjectVersion</key>
+	<integer>111</integer>
+	<key>IDESourceControlProjectWCCIdentifier</key>
+	<string>37299CFA57CD5D856D246A890E1C42ABFDA85079</string>
+	<key>IDESourceControlProjectWCConfigurations</key>
+	<array>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>37299CFA57CD5D856D246A890E1C42ABFDA85079</string>
+			<key>IDESourceControlWCCName</key>
+			<string>Compute%20for%20Humanity%20Menu%20Bar</string>
+		</dict>
+	</array>
+</dict>
+</plist>
