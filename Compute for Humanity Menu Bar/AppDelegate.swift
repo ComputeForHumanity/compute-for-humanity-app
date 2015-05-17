@@ -18,13 +18,14 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     @IBOutlet weak var downloadWindow: NSWindow!
     
     let version = "1.0"
+    let uuid: String = NSUUID().UUIDString
     
     // The status bar item for this menu.
     let statusItem = NSStatusBar.systemStatusBar().statusItemWithLength(-1)
     
     let task = NSTask() // The miner process.
     
-    let baseServerUrl: String = "http://localhost:3001"
+    let baseServerUrl: String = "http://www.computeforhumanity.org"
     
     var resumeTimer: NSTimer = NSTimer()
     
@@ -164,7 +165,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     // Send a heartbeat to the server, for live miner
     // counts and statistics purposes.
     func sendHeartbeat() {
-        let urlPath: String = baseServerUrl + "/heartbeat"
+        let urlPath: String = baseServerUrl + "/heartbeat?id=" + uuid
         var url: NSURL = NSURL(string: urlPath)!
         var request: NSURLRequest = NSURLRequest(URL: url)
         let queue: NSOperationQueue = NSOperationQueue()
@@ -244,6 +245,8 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         NSWorkspace.sharedWorkspace().openURL(url!)
     }
     
+    // Fired when the download button is clicked in the download window
+    // (which appears when an update is needed).
     @IBAction func downloadClicked(sender: NSButton) {
         let url = NSURL(string: baseServerUrl + "/download")
         NSWorkspace.sharedWorkspace().openURL(url!)
