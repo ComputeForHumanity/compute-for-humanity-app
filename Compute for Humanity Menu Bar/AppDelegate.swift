@@ -13,6 +13,7 @@ import Foundation
 class AppDelegate: NSObject, NSApplicationDelegate {
 
     @IBOutlet weak var statusMenu: NSMenu!
+    @IBOutlet weak var donationStatus: NSMenuItem!
     @IBOutlet weak var aboutPanel: NSPanel!
     @IBOutlet weak var downloadWindow: NSWindow!
     
@@ -47,6 +48,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         thermalStateChanged()
         initializeMiner()
         checkForUpdates()
+        sendHeartbeat()
     }
     
     // Initialize the status bar icon for this app.
@@ -95,6 +97,9 @@ class AppDelegate: NSObject, NSApplicationDelegate {
             "--user=12CbZWfSB5TESmFwiYs4WJRZtJyi9hBPNz", "--pass=x"
         ]
         
+        // Tell OS X to treat this as a low-priority background task.
+        task.qualityOfService = NSQualityOfService.Background
+        
         // Start the process and immediately pause it. The resumeTimer will kick it
         // off when appropriate.
         task.launch()
@@ -106,22 +111,29 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     func checkForUpdates() {
         let urlPath: String = baseServerUrl + "/version"
         var url: NSURL = NSURL(string: urlPath)!
-        var request1: NSURLRequest = NSURLRequest(URL: url)
+        var request: NSURLRequest = NSURLRequest(URL: url)
+        let queue: NSOperationQueue = NSOperationQueue()
         
-        // We use a synchronous request here because displaying the download window
-        // from within an asynchronous request's callback leads to errors.
-        var response: AutoreleasingUnsafeMutablePointer<NSURLResponse?> = nil
-        var data: NSData? =  NSURLConnection.sendSynchronousRequest(request1, returningResponse: response, error:nil)
-        
-        if data != nil {
-            let serverVersion: NSString = NSString(data:data!, encoding:NSUTF8StringEncoding)!
-            let currentVersion = NSBundle.mainBundle().infoDictionary?["CFBundleShortVersionString"] as? String
-            
-            if currentVersion != serverVersion {
-                NSApplication.sharedApplication().activateIgnoringOtherApps(true)
-                self.downloadWindow.makeKeyAndOrderFront(self)
+        NSURLConnection.sendAsynchronousRequest(
+            request,
+            queue: queue,
+            completionHandler: { (response: NSURLResponse!, data: NSData!, error: NSError!) -> Void in
+                let httpResponse = response as? NSHTTPURLResponse
+                
+                if error == nil && httpResponse != nil && httpResponse?.statusCode == 200 && data != nil {
+                    let serverVersion: NSString = NSString(data: data!, encoding: NSUTF8StringEncoding)!
+                    let currentVersion = NSBundle.mainBundle().infoDictionary?["CFBundleShortVersionString"] as? String
+                    
+                    if currentVersion != serverVersion {
+                        dispatch_async(dispatch_get_main_queue(), {
+                            NSApplication.sharedApplication().activateIgnoringOtherApps(true)
+                            self.downloadWindow.makeKeyAndOrderFront(self)
+                        })
+                    }
+
+                }
             }
-        }
+        )
     }
 
     // Initialize the miner resume timer, as long as we're
@@ -149,6 +161,30 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         terminateMiner()
     }
     
+    // Send a heartbeat to the server, for live miner
+    // counts and statistics purposes.
+    func sendHeartbeat() {
+        let urlPath: String = baseServerUrl + "/heartbeat"
+        var url: NSURL = NSURL(string: urlPath)!
+        var request: NSURLRequest = NSURLRequest(URL: url)
+        let queue: NSOperationQueue = NSOperationQueue()
+        
+        NSURLConnection.sendAsynchronousRequest(
+            request,
+            queue: queue,
+            completionHandler: { (response: NSURLResponse!, data: NSData!, error: NSError!) -> Void in
+                let httpResponse = response as? NSHTTPURLResponse
+                
+                if error == nil && httpResponse != nil && httpResponse?.statusCode == 200 && data != nil {
+                    let donated: NSString = NSString(data: data!, encoding: NSUTF8StringEncoding)!
+                    dispatch_async(dispatch_get_main_queue(), {
+                        self.donationStatus.title = "\(donated) donated so far!"
+                    })
+                }
+            }
+        )
+    }
+    
     // Resume the suspended miner process.
     func resumeMining() {
         // Here we resume the miner process and pause it in ten seconds.
@@ -162,6 +198,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         pauseTimer.tolerance = 1 // We're not picky about timing.
         
         task.resume() // Let's go!
+        sendHeartbeat()
     }
     
     // Suspend the miner process.
