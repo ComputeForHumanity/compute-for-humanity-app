@@ -16,6 +16,7 @@
                 <outlet property="aboutPanel" destination="uIY-vo-ni8" id="M8Q-sN-fbG"/>
                 <outlet property="donationStatus" destination="u8f-bJ-hYY" id="WeC-S6-6SN"/>
                 <outlet property="downloadWindow" destination="ru7-up-dH2" id="7tQ-Mw-KFU"/>
+                <outlet property="miningStatus" destination="KLP-9j-Rrq" id="BD1-TU-c2J"/>
                 <outlet property="statusMenu" destination="TIv-Qu-gfQ" id="yUo-jb-UZO"/>
             </connections>
         </customObject>
@@ -95,6 +96,9 @@
                     <modifierMask key="keyEquivalentModifierMask"/>
                 </menuItem>
                 <menuItem isSeparatorItem="YES" id="24v-QC-CK1"/>
+                <menuItem title="Status: Running" enabled="NO" id="KLP-9j-Rrq">
+                    <modifierMask key="keyEquivalentModifierMask"/>
+                </menuItem>
                 <menuItem title="Pause" id="P19-Tk-mx3">
                     <modifierMask key="keyEquivalentModifierMask"/>
                     <connections>

@@ -14,6 +14,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 
     @IBOutlet weak var statusMenu: NSMenu!
     @IBOutlet weak var donationStatus: NSMenuItem!
+    @IBOutlet weak var miningStatus: NSMenuItem!
     @IBOutlet weak var aboutPanel: NSPanel!
     @IBOutlet weak var downloadWindow: NSWindow!
     
@@ -77,6 +78,10 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     func thermalStateChanged() {
         let state = NSProcessInfo.processInfo().thermalState
         coolEnoughToMine = (state == NSProcessInfoThermalState.Nominal)
+        
+        if !coolEnoughToMine && !userPausedMining {
+            miningStatus.title = "Status: Paused (computer too warm)"
+        }
         
         initializeOrInvalidateMinerResumeTimer()
     }
@@ -152,6 +157,8 @@ class AppDelegate: NSObject, NSApplicationDelegate {
                 repeats: true
             )
             resumeTimer.tolerance = 10 // We're not picky about timing.
+            
+            miningStatus.title = "Status: Running"
         } else if resumeTimer.valid {
             resumeTimer.invalidate()
         }
@@ -228,6 +235,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         } else {
             userPausedMining = true
             sender.state = NSOnState
+            miningStatus.title = "Status: Paused"
         }
         
         initializeOrInvalidateMinerResumeTimer()
