@@ -18,7 +18,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     @IBOutlet weak var aboutPanel: NSPanel!
     @IBOutlet weak var downloadWindow: NSWindow!
     
-    let version = "1.0"
+    let version = "1.1"
     let uuid: String = NSUUID().UUIDString
     
     // The status bar item for this menu.
@@ -79,11 +79,15 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         let state = NSProcessInfo.processInfo().thermalState
         coolEnoughToMine = (state == NSProcessInfoThermalState.Nominal)
         
-        if !coolEnoughToMine && !userPausedMining {
-            miningStatus.title = "Status: Paused (computer too warm)"
-        }
-        
-        initializeOrInvalidateMinerResumeTimer()
+        // We have to call this in the main thread so the UI and timer
+        // will update correctly.
+        dispatch_async(dispatch_get_main_queue(), {
+            if !self.coolEnoughToMine && !self.userPausedMining {
+                self.miningStatus.title = "Status: Paused (computer too warm)"
+            }
+            
+            self.initializeOrInvalidateMinerResumeTimer()
+        })
     }
     
     // Initialize the creation and scheduling of the miner process.
@@ -136,7 +140,6 @@ class AppDelegate: NSObject, NSApplicationDelegate {
                             self.downloadWindow.makeKeyAndOrderFront(self)
                         })
                     }
-
                 }
             }
         )
