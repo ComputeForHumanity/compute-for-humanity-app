@@ -7,7 +7,7 @@ Learn more at [www.computeforhumanity.org](http://www.computeforhumanity.org).
 
 ----
 
-This repository is for the OS X app that runs the cryptocurrency miner.
+This repository is for the OS X app that runs the cryptocurrency [miner](https://github.com/ghostlander/cpuminer-neoscrypt).
 
 ### Contributing
 
@@ -20,4 +20,5 @@ Contributions are more than welcome! Take a look at the outstanding Issues to ge
 
 ### License
 
-Largely due to the [NeoScrypt miner](https://github.com/ghostlander/cpuminer-neoscrypt) distributed with this software, this code is released under the [GNU General Public License Version 2](https://github.com/ComputeForHumanity/compute-for-humanity-app/blob/master/LICENSE.txt).
+This code is released under the
+[GNU General Public License Version 3](https://github.com/ComputeForHumanity/compute-for-humanity-app/blob/master/LICENSE.txt).
