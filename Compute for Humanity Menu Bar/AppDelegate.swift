@@ -42,7 +42,6 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         
         // Set the application to launch at startup.
         if !applicationIsInStartUpItems() {
-            NSLog("Setting Compute for Humanity to launch at startup")
             toggleLaunchAtStartup()
         }
         
