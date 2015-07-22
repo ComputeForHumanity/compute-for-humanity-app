@@ -18,7 +18,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     @IBOutlet weak var aboutPanel: NSPanel!
     @IBOutlet weak var downloadWindow: NSWindow!
     
-    let version = "1.1"
+    let version = "1.2"
     let uuid: String = NSUUID().UUIDString
     
     // The status bar item for this menu.
