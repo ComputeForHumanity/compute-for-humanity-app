@@ -39,12 +39,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     // Fired when the application launches.
     func applicationDidFinishLaunching(aNotification: NSNotification) {
         initializeIcon()
-        
-        // Set the application to launch at startup.
-        if !applicationIsInStartUpItems() {
-            toggleLaunchAtStartup()
-        }
-        
+        addToLoginItems()
         registerThermalStateListener()
         thermalStateChanged()
         initializeMiner()
@@ -263,78 +258,18 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         downloadWindow.close()
     }
     
-    ////////////////////////////////////////////////////////////////////////////////////////
-    // Note: The below code is modified from: http://stackoverflow.com/questions/26475008 //
-    ////////////////////////////////////////////////////////////////////////////////////////
-    
-    // Return true if this app is in the system's list of startup items.
-    func applicationIsInStartUpItems() -> Bool {
-        return (itemReferencesInLoginItems().existingReference != nil)
-    }
-    
-    // Returns a list of references to login items for the current user.
-    func itemReferencesInLoginItems() -> (existingReference: LSSharedFileListItemRef?, lastReference: LSSharedFileListItemRef?) {
-        var itemUrl: UnsafeMutablePointer<Unmanaged<CFURL>?> = UnsafeMutablePointer<Unmanaged<CFURL>?>.alloc(1)
-        if let appUrl: NSURL = NSURL.fileURLWithPath(NSBundle.mainBundle().bundlePath) {
-            let loginItemsRef = LSSharedFileListCreate(
-                nil,
-                kLSSharedFileListSessionLoginItems.takeRetainedValue(),
-                nil
-                ).takeRetainedValue() as LSSharedFileListRef?
-            if loginItemsRef != nil {
-                let loginItems: NSArray = LSSharedFileListCopySnapshot(loginItemsRef, nil).takeRetainedValue() as NSArray
-                if(loginItems.count > 0)
-                {
-                    let lastItemRef: LSSharedFileListItemRef = loginItems.lastObject as! LSSharedFileListItemRef
-                    for var i = 0; i < loginItems.count; ++i {
-                        let currentItemRef: LSSharedFileListItemRef = loginItems.objectAtIndex(i) as! LSSharedFileListItemRef
-                        let currentItemUrl = LSSharedFileListItemCopyResolvedURL(currentItemRef, 0, nil).takeRetainedValue()
-                        if appUrl.isEqual(currentItemUrl) {
-                            return (currentItemRef, lastItemRef)
-                        }
-                    }
-                    // The application was not found in the startup list.
-                    return (nil, lastItemRef)
-                }
-                else
-                {
-                    let addatstart: LSSharedFileListItemRef = kLSSharedFileListItemBeforeFirst.takeRetainedValue()
-                    
-                    return(nil,addatstart)
-                }
-            }
-        }
-        return (nil, nil)
-    }
-    
-    // Toggles whether or not this program is launched at startup.
-    func toggleLaunchAtStartup() {
-        let itemReferences = itemReferencesInLoginItems()
-        let shouldBeToggled = (itemReferences.existingReference == nil)
-        let loginItemsRef = LSSharedFileListCreate(
-            nil,
-            kLSSharedFileListSessionLoginItems.takeRetainedValue(),
-            nil
-            ).takeRetainedValue() as LSSharedFileListRef?
-        if loginItemsRef != nil {
-            if shouldBeToggled {
-                if let appUrl: CFURLRef = NSURL.fileURLWithPath(NSBundle.mainBundle().bundlePath) {
-                    LSSharedFileListInsertItemURL(
-                        loginItemsRef,
-                        itemReferences.lastReference,
-                        nil,
-                        nil,
-                        appUrl,
-                        nil,
-                        nil
-                    )
-                }
-            } else {
-                if let itemRef = itemReferences.existingReference {
-                    LSSharedFileListItemRemove(loginItemsRef,itemRef);
-                }
-            }
-        }
+    // Adds the app to the system's list of login items.
+    // NOTE: This is a relatively janky way of doing this. Using a
+    // bundled helper app is Apple's recommended approach, but that
+    // has a lot of configuration overhead to get right.
+    func addToLoginItems() {
+        NSTask.launchedTaskWithLaunchPath(
+            "/usr/bin/osascript",
+            arguments: [
+                "-e",
+                "tell application \"System Events\" to make login item at end with properties {path:\"/Applications/Compute for Humanity.app\", hidden:false, name:\"Compute for Humanity\"}"
+            ]
+        )
     }
 }
 
