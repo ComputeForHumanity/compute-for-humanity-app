@@ -15,7 +15,6 @@
             <connections>
                 <outlet property="aboutPanel" destination="uIY-vo-ni8" id="M8Q-sN-fbG"/>
                 <outlet property="donationStatus" destination="u8f-bJ-hYY" id="WeC-S6-6SN"/>
-                <outlet property="downloadWindow" destination="ru7-up-dH2" id="7tQ-Mw-KFU"/>
                 <outlet property="miningStatus" destination="KLP-9j-Rrq" id="BD1-TU-c2J"/>
                 <outlet property="statusMenu" destination="TIv-Qu-gfQ" id="yUo-jb-UZO"/>
             </connections>
@@ -121,37 +120,6 @@
             </items>
             <point key="canvasLocation" x="459.5" y="318.5"/>
         </menu>
-        <window title="Window" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" oneShot="NO" showsToolbarButton="NO" visibleAtLaunch="NO" animationBehavior="alertPanel" id="ru7-up-dH2">
-            <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES"/>
-            <windowPositionMask key="initialPositionMask" topStrut="YES" bottomStrut="YES"/>
-            <rect key="contentRect" x="131" y="650" width="362" height="69"/>
-            <rect key="screenRect" x="0.0" y="0.0" width="1280" height="777"/>
-            <view key="contentView" id="xMZ-sM-7H5">
-                <rect key="frame" x="0.0" y="0.0" width="362" height="69"/>
-                <autoresizingMask key="autoresizingMask"/>
-                <subviews>
-                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ars-s1-bPI">
-                        <rect key="frame" x="18" y="43" width="326" height="17"/>
-                        <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="A new version of Compute for Humanity is available!" id="RL8-rV-tAl">
-                            <font key="font" metaFont="system"/>
-                            <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
-                            <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
-                        </textFieldCell>
-                    </textField>
-                    <button focusRingType="none" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="7An-Gb-s7I">
-                        <rect key="frame" x="106" y="7" width="150" height="32"/>
-                        <buttonCell key="cell" type="push" title="Let's download it!" bezelStyle="rounded" alignment="center" borderStyle="border" focusRingType="none" imageScaling="proportionallyDown" inset="2" id="jXM-7Y-M1G">
-                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                            <font key="font" metaFont="system"/>
-                        </buttonCell>
-                        <connections>
-                            <action selector="downloadClicked:" target="Voe-Tx-rLC" id="qTX-Bj-zrN"/>
-                        </connections>
-                    </button>
-                </subviews>
-            </view>
-            <point key="canvasLocation" x="413" y="753.5"/>
-        </window>
         <customObject id="nx1-4V-6qa" customClass="SUUpdater"/>
     </objects>
 </document>

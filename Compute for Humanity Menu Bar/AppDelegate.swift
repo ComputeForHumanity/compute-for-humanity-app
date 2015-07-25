@@ -16,7 +16,6 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     @IBOutlet weak var donationStatus: NSMenuItem!
     @IBOutlet weak var miningStatus: NSMenuItem!
     @IBOutlet weak var aboutPanel: NSPanel!
-    @IBOutlet weak var downloadWindow: NSWindow!
     
     let uuid: String = NSUUID().UUIDString
     
@@ -237,14 +236,6 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     @IBAction func linkClicked(sender: NSButton) {
         let url = NSURL(string: baseServerUrl)
         NSWorkspace.sharedWorkspace().openURL(url!)
-    }
-    
-    // Fired when the download button is clicked in the download window
-    // (which appears when an update is needed).
-    @IBAction func downloadClicked(sender: NSButton) {
-        let url = NSURL(string: baseServerUrl + "/download")
-        NSWorkspace.sharedWorkspace().openURL(url!)
-        downloadWindow.close()
     }
     
     // Adds the app to the system's list of login items.
