@@ -18,7 +18,6 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     @IBOutlet weak var aboutPanel: NSPanel!
     @IBOutlet weak var downloadWindow: NSWindow!
     
-    let version = "1.3"
     let uuid: String = NSUUID().UUIDString
     
     // The status bar item for this menu.
@@ -43,7 +42,6 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         registerThermalStateListener()
         thermalStateChanged()
         initializeMiner()
-        checkForUpdates()
     }
     
     // Initialize the status bar icon for this app.
@@ -107,35 +105,6 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         // off when appropriate.
         task.launch()
         pauseMining()
-    }
-    
-    // Check to see if there is a newer version of the app. If so,
-    // display the download window.
-    func checkForUpdates() {
-        let urlPath: String = baseServerUrl + "/version"
-        var url: NSURL = NSURL(string: urlPath)!
-        var request: NSURLRequest = NSURLRequest(URL: url)
-        let queue: NSOperationQueue = NSOperationQueue()
-        
-        NSURLConnection.sendAsynchronousRequest(
-            request,
-            queue: queue,
-            completionHandler: { (response: NSURLResponse!, data: NSData!, error: NSError!) -> Void in
-                let httpResponse = response as? NSHTTPURLResponse
-                
-                if error == nil && httpResponse != nil && httpResponse?.statusCode == 200 && data != nil {
-                    let serverVersion: NSString = NSString(data: data!, encoding: NSUTF8StringEncoding)!
-                    let currentVersion = NSBundle.mainBundle().infoDictionary?["CFBundleShortVersionString"] as? String
-                    
-                    if currentVersion != serverVersion {
-                        dispatch_async(dispatch_get_main_queue(), {
-                            NSApplication.sharedApplication().activateIgnoringOtherApps(true)
-                            self.downloadWindow.makeKeyAndOrderFront(self)
-                        })
-                    }
-                }
-            }
-        )
     }
 
     // Initialize the miner resume timer, as long as we're
