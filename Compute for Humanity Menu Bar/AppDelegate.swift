@@ -44,7 +44,6 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         thermalStateChanged()
         initializeMiner()
         checkForUpdates()
-        sendHeartbeat()
     }
     
     // Initialize the status bar icon for this app.
@@ -156,18 +155,22 @@ class AppDelegate: NSObject, NSApplicationDelegate {
             resumeTimer.tolerance = 10 // We're not picky about timing.
             
             miningStatus.title = "Status: Running"
+            sendHeartbeat()
         } else if resumeTimer.valid {
             resumeTimer.invalidate()
+            sendUnheartbeat()
         }
     }
 
     // Fired when the app is terminated. Shuts down the miner process.
     func applicationWillTerminate(aNotification: NSNotification) {
         terminateMiner()
+        sendUnheartbeat()
     }
     
     // Send a heartbeat to the server, for live miner
-    // counts and statistics purposes.
+    // counts and statistics purposes. This indicates that
+    // we're mining.
     func sendHeartbeat() {
         let urlPath: String = baseServerUrl + "/heartbeat?id=" + uuid
         var url: NSURL = NSURL(string: urlPath)!
@@ -186,6 +189,23 @@ class AppDelegate: NSObject, NSApplicationDelegate {
                         self.donationStatus.title = "\(donated) donated so far!"
                     })
                 }
+            }
+        )
+    }
+    
+    // Send an un-heartbeat to the server, for live miner
+    // counts and statistics purposes. It indicates that we're
+    // no longer mining.
+    func sendUnheartbeat() {
+        let urlPath: String = baseServerUrl + "/unheartbeat?id=" + uuid
+        var url: NSURL = NSURL(string: urlPath)!
+        var request: NSURLRequest = NSURLRequest(URL: url)
+        let queue: NSOperationQueue = NSOperationQueue()
+        
+        NSURLConnection.sendAsynchronousRequest(
+            request,
+            queue: queue,
+            completionHandler: { (response: NSURLResponse!, data: NSData!, error: NSError!) -> Void in
             }
         )
     }
