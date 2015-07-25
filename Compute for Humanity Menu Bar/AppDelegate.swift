@@ -96,7 +96,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
             fullyQualifiedMiner,
             "--threads=1", "--engine=1", // More hashes, low output.
             "--quiet", // Don't output hash rates.
-            "--url=stratum+tcp://stratum.nicehash.com:3341",
+            "--url=stratum+tcp://neoscrypt.usa.nicehash.com:3341",
             "--user=12CbZWfSB5TESmFwiYs4WJRZtJyi9hBPNz", "--pass=x"
         ]
         
