@@ -11,8 +11,8 @@
 		47006E121AFAE393009F36E0 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 47006E101AFAE393009F36E0 /* MainMenu.xib */; };
 		47556C061B06D75D0025AADE /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 47556C051B06D75D0025AADE /* Images.xcassets */; };
 		477AD3551AFFCE09001D1E43 /* minerd in Resources */ = {isa = PBXBuildFile; fileRef = 477AD3541AFFCE09001D1E43 /* minerd */; };
-		47F8EE291B643DE100D02D63 /* Sparkle.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 47F8EE281B643DE100D02D63 /* Sparkle.framework */; settings = {ATTRIBUTES = (Required, ); }; };
-		47F8EE2B1B643E8E00D02D63 /* Sparkle.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 47F8EE281B643DE100D02D63 /* Sparkle.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		4797FD911B658E48002CEE8B /* Sparkle.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 4797FD8D1B658C11002CEE8B /* Sparkle.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		4797FD921B658E76002CEE8B /* Sparkle.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4797FD8D1B658C11002CEE8B /* Sparkle.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -22,7 +22,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				47F8EE2B1B643E8E00D02D63 /* Sparkle.framework in CopyFiles */,
+				4797FD911B658E48002CEE8B /* Sparkle.framework in CopyFiles */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -35,7 +35,7 @@
 		47006E111AFAE393009F36E0 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/MainMenu.xib; sourceTree = "<group>"; };
 		47556C051B06D75D0025AADE /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		477AD3541AFFCE09001D1E43 /* minerd */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.executable"; name = minerd; path = ../minerd; sourceTree = "<group>"; };
-		47F8EE281B643DE100D02D63 /* Sparkle.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Sparkle.framework; path = "../../../Downloads/Sparkle-1.10.0/Sparkle.framework"; sourceTree = "<group>"; };
+		4797FD8D1B658C11002CEE8B /* Sparkle.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Sparkle.framework; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -43,7 +43,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				47F8EE291B643DE100D02D63 /* Sparkle.framework in Frameworks */,
+				4797FD921B658E76002CEE8B /* Sparkle.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -53,7 +53,7 @@
 		47006DFE1AFAE393009F36E0 = {
 			isa = PBXGroup;
 			children = (
-				47F8EE281B643DE100D02D63 /* Sparkle.framework */,
+				4797FD8D1B658C11002CEE8B /* Sparkle.framework */,
 				47006E091AFAE393009F36E0 /* Compute for Humanity Menu Bar */,
 				47006E081AFAE393009F36E0 /* Products */,
 			);
@@ -262,7 +262,7 @@
 				COMBINE_HIDPI_IMAGES = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
-					"/Users/jacobevelyn/Downloads/Sparkle-1.10.0",
+					"$(PROJECT_DIR)",
 				);
 				INFOPLIST_FILE = "Compute for Humanity Menu Bar/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
@@ -278,7 +278,7 @@
 				COMBINE_HIDPI_IMAGES = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
-					"/Users/jacobevelyn/Downloads/Sparkle-1.10.0",
+					"$(PROJECT_DIR)",
 				);
 				INFOPLIST_FILE = "Compute for Humanity Menu Bar/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";

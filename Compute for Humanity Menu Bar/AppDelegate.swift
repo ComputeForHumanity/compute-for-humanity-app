@@ -55,12 +55,16 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     // Register the app to listen for thermal state changes from the OS
     // and respond to them with the thermalStateChanged() function.
     func registerThermalStateListener() {
-        NSNotificationCenter.defaultCenter().addObserver(
-            self,
-            selector: Selector("thermalStateChanged"),
-            name: NSProcessInfoThermalStateDidChangeNotification,
-            object: nil
-        )
+        if NSProcessInfo().isOperatingSystemAtLeastVersion(NSOperatingSystemVersion(
+            majorVersion: 10, minorVersion: 10, patchVersion: 3)) {
+            
+            NSNotificationCenter.defaultCenter().addObserver(
+                self,
+                selector: Selector("thermalStateChanged"),
+                name: NSProcessInfoThermalStateDidChangeNotification,
+                object: nil
+            )
+        }
     }
     
     // Update our internal status storing our thermal state, and
