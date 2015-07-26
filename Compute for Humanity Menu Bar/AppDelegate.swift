@@ -27,7 +27,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     let baseServerUrl: String = "http://www.computeforhumanity.org"
     
     var resumeTimer: NSTimer = NSTimer()
-    
+
     // We will only mine (and we will only have the
     // resumeTimer alive) when the thermals are cool
     // enough and the user hasn't paused mining.
@@ -55,16 +55,12 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     // Register the app to listen for thermal state changes from the OS
     // and respond to them with the thermalStateChanged() function.
     func registerThermalStateListener() {
-        if NSProcessInfo().isOperatingSystemAtLeastVersion(NSOperatingSystemVersion(
-            majorVersion: 10, minorVersion: 10, patchVersion: 3)) {
-            
-            NSNotificationCenter.defaultCenter().addObserver(
-                self,
-                selector: Selector("thermalStateChanged"),
-                name: NSProcessInfoThermalStateDidChangeNotification,
-                object: nil
-            )
-        }
+        NSNotificationCenter.defaultCenter().addObserver(
+            self,
+            selector: Selector("thermalStateChanged"),
+            name: NSProcessInfoThermalStateDidChangeNotification,
+            object: nil
+        )
     }
     
     // Update our internal status storing our thermal state, and
