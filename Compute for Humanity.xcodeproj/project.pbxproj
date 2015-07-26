@@ -266,6 +266,7 @@
 				);
 				INFOPLIST_FILE = "Compute for Humanity Menu Bar/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 10.10.3;
 				PRODUCT_NAME = "Compute for Humanity";
 			};
 			name = Debug;
@@ -282,6 +283,7 @@
 				);
 				INFOPLIST_FILE = "Compute for Humanity Menu Bar/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 10.10.3;
 				PRODUCT_NAME = "Compute for Humanity";
 			};
 			name = Release;
