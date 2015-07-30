@@ -112,9 +112,9 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         // Do nothing if the user's paused or the thermals
         // are too warm.
         if coolEnoughToMine && !userPausedMining {
-            // Every 60 seconds, resume the suspended miner process.
+            // Every 180 seconds, resume the suspended miner process.
             resumeTimer = NSTimer.scheduledTimerWithTimeInterval(
-                60,
+                180,
                 target: self,
                 selector: Selector("resumeMining"),
                 userInfo: nil,
