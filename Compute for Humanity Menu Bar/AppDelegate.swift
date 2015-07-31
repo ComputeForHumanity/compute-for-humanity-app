@@ -26,6 +26,13 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     
     let baseServerUrl: String = "http://www.computeforhumanity.org"
     
+    let resumeTimerInterval: NSTimeInterval = 180 // Seconds.
+    let miningTimerDuration: NSTimeInterval = 10 // Seconds.
+    
+    // Apple recommends a tolerance of 10% of the timer duration.
+    let resumeTimerTolerance: NSTimeInterval = 18 // Seconds.
+    let miningTimerTolerance: NSTimeInterval = 1 // Seconds.
+    
     var resumeTimer: NSTimer = NSTimer()
 
     // We will only mine (and we will only have the
@@ -91,7 +98,8 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         task.arguments = [
             "-n", "20", // Use highest niceness for lowest CPU scheduling priority.
             fullyQualifiedMiner,
-            "--threads=1", "--engine=1", // More hashes, low output.
+            "--threads=1", // Only use one thread.
+            "--engine=1", // Produces more hashes on the machines I've tested.
             "--quiet", // Don't output hash rates.
             "--url=stratum+tcp://neoscrypt.usa.nicehash.com:3341",
             "--user=12CbZWfSB5TESmFwiYs4WJRZtJyi9hBPNz", "--pass=x"
@@ -114,13 +122,13 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         if coolEnoughToMine && !userPausedMining {
             // Every 180 seconds, resume the suspended miner process.
             resumeTimer = NSTimer.scheduledTimerWithTimeInterval(
-                180,
+                resumeTimerInterval,
                 target: self,
                 selector: Selector("resumeMining"),
                 userInfo: nil,
                 repeats: true
             )
-            resumeTimer.tolerance = 10 // We're not picky about timing.
+            resumeTimer.tolerance = resumeTimerTolerance // We're not picky about timing.
             
             miningStatus.title = "Status: Running"
             sendHeartbeat()
@@ -182,13 +190,13 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     func resumeMining() {
         // Here we resume the miner process and pause it in ten seconds.
         let pauseTimer = NSTimer.scheduledTimerWithTimeInterval(
-            10,
+            miningTimerDuration,
             target: self,
             selector: Selector("pauseMining"),
             userInfo: nil,
             repeats: false
         )
-        pauseTimer.tolerance = 1 // We're not picky about timing.
+        pauseTimer.tolerance = miningTimerTolerance // We're not picky about timing.
         
         task.resume() // Let's go!
         sendHeartbeat()
