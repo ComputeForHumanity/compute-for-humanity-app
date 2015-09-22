@@ -53,7 +53,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     // Initialize the status bar icon for this app.
     func initializeIcon() {
         let icon = NSImage(named: "statusIcon")
-        icon?.setTemplate(true)
+        icon?.template = true
         
         statusItem.image = icon
         statusItem.menu = statusMenu
@@ -149,14 +149,14 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     // we're mining.
     func sendHeartbeat() {
         let urlPath: String = baseServerUrl + "/heartbeat?id=" + uuid
-        var url: NSURL = NSURL(string: urlPath)!
-        var request: NSURLRequest = NSURLRequest(URL: url)
+        let url: NSURL = NSURL(string: urlPath)!
+        let request: NSURLRequest = NSURLRequest(URL: url)
         let queue: NSOperationQueue = NSOperationQueue()
         
         NSURLConnection.sendAsynchronousRequest(
             request,
             queue: queue,
-            completionHandler: { (response: NSURLResponse!, data: NSData!, error: NSError!) -> Void in
+            completionHandler: { (response: NSURLResponse?, data: NSData?, error: NSError?) -> Void in
                 let httpResponse = response as? NSHTTPURLResponse
                 
                 if error == nil && httpResponse != nil && httpResponse?.statusCode == 200 && data != nil {
@@ -174,14 +174,14 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     // no longer mining.
     func sendUnheartbeat() {
         let urlPath: String = baseServerUrl + "/unheartbeat?id=" + uuid
-        var url: NSURL = NSURL(string: urlPath)!
-        var request: NSURLRequest = NSURLRequest(URL: url)
+        let url: NSURL = NSURL(string: urlPath)!
+        let request: NSURLRequest = NSURLRequest(URL: url)
         let queue: NSOperationQueue = NSOperationQueue()
         
         NSURLConnection.sendAsynchronousRequest(
             request,
             queue: queue,
-            completionHandler: { (response: NSURLResponse!, data: NSData!, error: NSError!) -> Void in
+            completionHandler: { (response: NSURLResponse?, data: NSData?, error: NSError?) -> Void in
             }
         )
     }
