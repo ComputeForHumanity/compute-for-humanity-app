@@ -43,6 +43,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 
     // Fired when the application launches.
     func applicationDidFinishLaunching(aNotification: NSNotification) {
+        PFMoveToApplicationsFolderIfNecessary()
         initializeIcon()
         addToLoginItems()
         registerThermalStateListener()
