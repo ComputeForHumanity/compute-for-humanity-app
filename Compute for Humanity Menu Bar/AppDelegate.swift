@@ -53,10 +53,8 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     
     // Initialize the status bar icon for this app.
     func initializeIcon() {
-        let icon = NSImage(named: "statusIcon")
-        icon?.template = true
-        
-        statusItem.image = icon
+        let statusButton = statusItem.button
+        statusButton!.image = NSImage(named: "statusIcon")
         statusItem.menu = statusMenu
     }
     
@@ -118,6 +116,8 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     // Initialize the miner resume timer, as long as we're
     // not paused and the thermals are okay.
     func initializeOrInvalidateMinerResumeTimer() {
+        let statusButton = statusItem.button
+        
         // Do nothing if the user's paused or the thermals
         // are too warm.
         if coolEnoughToMine && !userPausedMining {
@@ -132,10 +132,12 @@ class AppDelegate: NSObject, NSApplicationDelegate {
             resumeTimer.tolerance = resumeTimerTolerance // We're not picky about timing.
             
             miningStatus.title = "Status: Running"
+            statusButton!.appearsDisabled = false
             sendHeartbeat()
         } else if resumeTimer.valid {
             resumeTimer.invalidate()
             sendUnheartbeat()
+            statusButton!.appearsDisabled = true
         }
     }
 
