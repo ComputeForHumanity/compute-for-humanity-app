@@ -27,11 +27,11 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     let baseServerUrl: String = "http://www.computeforhumanity.org"
     
     let resumeTimerInterval: NSTimeInterval = 180 // Seconds.
-    let miningTimerDuration: NSTimeInterval = 10 // Seconds.
+    let miningTimerDuration: NSTimeInterval = 20 // Seconds.
     
     // Apple recommends a tolerance of 10% of the timer duration.
     let resumeTimerTolerance: NSTimeInterval = 18 // Seconds.
-    let miningTimerTolerance: NSTimeInterval = 1 // Seconds.
+    let miningTimerTolerance: NSTimeInterval = 2 // Seconds.
     
     var resumeTimer: NSTimer = NSTimer()
 
