@@ -40,7 +40,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     // enough and the user hasn't paused mining.
     var userPausedMining = false
     var coolEnoughToMine = false
-
+    
     // Fired when the application launches.
     func applicationDidFinishLaunching(aNotification: NSNotification) {
         PFMoveToApplicationsFolderIfNecessary()
@@ -54,7 +54,11 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     // Initialize the status bar icon for this app.
     func initializeIcon() {
         let statusButton = statusItem.button
-        statusButton!.image = NSImage(named: "statusIcon")
+        let icon = NSImage(named: "statusIcon")
+        
+        icon?.template = true
+        statusButton!.image = icon
+        
         statusItem.menu = statusMenu
     }
     
