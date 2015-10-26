@@ -47,8 +47,15 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         initializeIcon()
         addToLoginItems()
         registerThermalStateListener()
-        thermalStateChanged()
+        thermalStateChanged() // Read initial thermal state; adjust timer.
         initializeMiner()
+        
+        // If we're cool enough to mine, we'll have made a heartbeat
+        // already. If not though, we send a data-less heartbeat so
+        // we can get the donated amount to display.
+        if !coolEnoughToMine {
+            sendHeartbeat(false)
+        }
     }
     
     // Initialize the status bar icon for this app.
@@ -82,10 +89,6 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         // We have to call this in the main thread so the UI and timer
         // will update correctly.
         dispatch_async(dispatch_get_main_queue(), {
-            if !self.coolEnoughToMine && !self.userPausedMining {
-                self.miningStatus.title = "Status: Paused (computer too warm)"
-            }
-            
             self.initializeOrInvalidateMinerResumeTimer()
         })
     }
@@ -138,10 +141,22 @@ class AppDelegate: NSObject, NSApplicationDelegate {
             miningStatus.title = "Status: Running"
             statusButton!.appearsDisabled = false
             sendHeartbeat()
-        } else if resumeTimer.valid {
-            resumeTimer.invalidate()
-            sendUnheartbeat()
-            statusButton!.appearsDisabled = true
+        } else {
+            // If ther user paused mining, update that takes precedence
+            // in the UI. Otherwise, display the computer-too-warm UI.
+            if userPausedMining {
+                statusButton!.appearsDisabled = true
+                miningStatus.title = "Status: Paused"
+            } else {
+                statusButton!.appearsDisabled = false
+                miningStatus.title = "Status: Paused (computer too warm)"
+            }
+            
+            // If we have a valid timer, invalidate it.
+            if resumeTimer.valid {
+                resumeTimer.invalidate()
+                sendUnheartbeat()
+            }
         }
     }
 
@@ -154,8 +169,11 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     // Send a heartbeat to the server, for live miner
     // counts and statistics purposes. This indicates that
     // we're mining.
-    func sendHeartbeat() {
-        let urlPath: String = baseServerUrl + "/heartbeat?id=" + uuid
+    func sendHeartbeat(sendUuid: Bool = true) {
+        var urlPath: String = baseServerUrl + "/heartbeat"
+        if sendUuid {
+            urlPath += "?id=" + uuid
+        }
         let url: NSURL = NSURL(string: urlPath)!
         let request: NSURLRequest = NSURLRequest(URL: url)
         let queue: NSOperationQueue = NSOperationQueue()
@@ -235,7 +253,6 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         } else {
             userPausedMining = true
             sender.state = NSOnState
-            miningStatus.title = "Status: Paused"
         }
         
         initializeOrInvalidateMinerResumeTimer()
