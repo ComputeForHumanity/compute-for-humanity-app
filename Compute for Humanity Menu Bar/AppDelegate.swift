@@ -27,11 +27,20 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     let baseServerUrl: String = "http://www.computeforhumanity.org"
     
     let resumeTimerInterval: NSTimeInterval = 180 // Seconds.
-    let miningTimerDuration: NSTimeInterval = 20 // Seconds.
+    let miningTimerDurationNormal: NSTimeInterval = 20 // Seconds.
     
     // Apple recommends a tolerance of 10% of the timer duration.
     let resumeTimerTolerance: NSTimeInterval = 18 // Seconds.
-    let miningTimerTolerance: NSTimeInterval = 2 // Seconds.
+    let miningTimerToleranceNormal: NSTimeInterval = 2 // Seconds.
+    
+    // Now we add timing intervals for more-CPU mode.
+    let miningTimerDurationMoreCpu: NSTimeInterval = 60 // Seconds.
+    let miningTimerToleranceMoreCpu: NSTimeInterval = 6 // Seconds.
+    
+    // These values must default to the same as the "normal" values
+    // above.
+    var miningTimerDuration: NSTimeInterval = 20
+    var miningTimerTolerance: NSTimeInterval = 2
     
     var resumeTimer: NSTimer = NSTimer()
 
@@ -97,7 +106,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     func initializeMiner() {
         // Get the fully qualified path to the miner.
         let bundle = NSBundle.mainBundle()
-        let fullyQualifiedMiner = bundle.pathForResource("minerd", ofType: nil)!
+        let fullyQualifiedMiner = bundle.pathForResource("ComputeForHumanityHelper", ofType: nil)!
         
         // Use `nice` to give mining the lowest CPU scheduling priority.
         task.launchPath = "/usr/bin/nice"
@@ -127,7 +136,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         
         // Do nothing if the user's paused or the thermals
         // are too warm.
-        if coolEnoughToMine && !userPausedMining {
+        if true || coolEnoughToMine && !userPausedMining {
             // Every 180 seconds, resume the suspended miner process.
             resumeTimer = NSTimer.scheduledTimerWithTimeInterval(
                 resumeTimerInterval,
@@ -256,6 +265,18 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         }
         
         initializeOrInvalidateMinerResumeTimer()
+    }
+    
+    @IBAction func moreCpuClicked(sender: NSMenuItem) {
+        if sender.state == NSOnState {
+            miningTimerDuration = miningTimerDurationNormal
+            miningTimerTolerance = miningTimerToleranceNormal
+            sender.state = NSOffState
+        } else {
+            miningTimerDuration = miningTimerDurationMoreCpu
+            miningTimerTolerance = miningTimerToleranceMoreCpu
+            sender.state = NSOnState
+        }
     }
     
     // Fired when the "Quit" item is selected.
