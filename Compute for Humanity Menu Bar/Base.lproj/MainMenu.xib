@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="9059" systemVersion="14F1021" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="9531" systemVersion="15C50" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="9059"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="9531"/>
     </dependencies>
     <objects>
         <customObject id="-2" userLabel="File's Owner" customClass="NSApplication">
@@ -15,9 +15,17 @@
         <customObject id="Voe-Tx-rLC" customClass="AppDelegate" customModule="Compute_for_Humanity" customModuleProvider="target">
             <connections>
                 <outlet property="aboutPanel" destination="uIY-vo-ni8" id="M8Q-sN-fbG"/>
+                <outlet property="achievementMenuItem" destination="1gH-tn-hVH" id="mtk-rj-hly"/>
+                <outlet property="copiedMessage" destination="biM-gd-23X" id="biX-hQ-qmh"/>
                 <outlet property="donationStatus" destination="u8f-bJ-hYY" id="WeC-S6-6SN"/>
-                <outlet property="miningStatus" destination="KLP-9j-Rrq" id="BD1-TU-c2J"/>
-                <outlet property="statusMenu" destination="TIv-Qu-gfQ" id="yUo-jb-UZO"/>
+                <outlet property="heartsEarned" destination="OjB-wX-dwv" id="rhB-nb-yUj"/>
+                <outlet property="miningStatus" destination="nJ8-Tp-7Ry" id="cVM-u1-j62"/>
+                <outlet property="moreCpuMenuItem" destination="oFN-49-f2d" id="Mm8-3t-jze"/>
+                <outlet property="recruitURL" destination="qCu-Fk-KPP" id="NsK-Ri-YlV"/>
+                <outlet property="recruitWindow" destination="k0r-Zw-76N" id="qwt-5e-vbD"/>
+                <outlet property="statusMenu" destination="TIv-Qu-gfQ" id="HtF-az-bzE"/>
+                <outlet property="surpriseClaimWindow" destination="TJz-6N-fch" id="t28-gd-Dkd"/>
+                <outlet property="surpriseUUID" destination="IRn-ht-c7J" id="n4y-IT-IHJ"/>
             </connections>
         </customObject>
         <customObject id="YLy-65-1bz" customClass="NSFontManager"/>
@@ -30,9 +38,9 @@
                 <rect key="frame" x="0.0" y="0.0" width="291" height="209"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="38N-Vv-PvI">
+                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" setsMaxLayoutWidthAtFirstLayout="YES" translatesAutoresizingMaskIntoConstraints="NO" id="38N-Vv-PvI">
                         <rect key="frame" x="71" y="172" width="149" height="17"/>
-                        <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Compute for Humanity" id="kRB-Za-e8q">
+                        <textFieldCell key="cell" sendsActionOnEndEditing="YES" title="Compute for Humanity" id="kRB-Za-e8q">
                             <font key="font" metaFont="system"/>
                             <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                             <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
@@ -40,7 +48,7 @@
                     </textField>
                     <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Mql-rd-M8Q">
                         <rect key="frame" x="78" y="158" width="134" height="11"/>
-                        <textFieldCell key="cell" controlSize="mini" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="center" title="© Jacob Evelyn 2015" id="lKw-iB-bvj">
+                        <textFieldCell key="cell" controlSize="mini" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="center" title="© Jacob Evelyn 2015-2016" id="lKw-iB-bvj">
                             <font key="font" metaFont="miniSystem"/>
                             <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                             <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
@@ -54,9 +62,9 @@
                             <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                         </textFieldCell>
                     </textField>
-                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="WL1-4r-3J2">
+                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" setsMaxLayoutWidthAtFirstLayout="YES" translatesAutoresizingMaskIntoConstraints="NO" id="WL1-4r-3J2">
                         <rect key="frame" x="97" y="52" width="96" height="11"/>
-                        <textFieldCell key="cell" controlSize="mini" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="center" title="Learn more at" id="4pk-xz-uRp">
+                        <textFieldCell key="cell" controlSize="mini" sendsActionOnEndEditing="YES" alignment="center" title="Learn more at" id="4pk-xz-uRp">
                             <font key="font" metaFont="miniSystem"/>
                             <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                             <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
@@ -74,15 +82,19 @@
                     </button>
                     <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="aAL-eH-zGU">
                         <rect key="frame" x="220" y="170" width="38" height="11"/>
-                        <textFieldCell key="cell" controlSize="mini" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="v1.15" id="HVp-zX-3vn">
+                        <textFieldCell key="cell" controlSize="mini" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="v2.0" id="HVp-zX-3vn">
                             <font key="font" metaFont="system" size="6"/>
                             <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                             <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                         </textFieldCell>
                     </textField>
+                    <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="jXX-kH-Wbj">
+                        <rect key="frame" x="24" y="151" width="48" height="48"/>
+                        <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" image="C4HLogo" id="2Qp-hE-GxD"/>
+                    </imageView>
                 </subviews>
             </view>
-            <point key="canvasLocation" x="459.5" y="528.5"/>
+            <point key="canvasLocation" x="267.5" y="213.5"/>
         </window>
         <menu id="TIv-Qu-gfQ">
             <items>
@@ -92,32 +104,57 @@
                         <action selector="aboutClicked:" target="Voe-Tx-rLC" id="1bg-yh-PMd"/>
                     </connections>
                 </menuItem>
+                <menuItem title="Retrieving donation data..." enabled="NO" id="u8f-bJ-hYY">
+                    <modifierMask key="keyEquivalentModifierMask"/>
+                </menuItem>
+                <menuItem isSeparatorItem="YES" id="24v-QC-CK1"/>
+                <menuItem title="Your 💖s earned: &lt;loading&gt;" id="OjB-wX-dwv">
+                    <modifierMask key="keyEquivalentModifierMask"/>
+                    <menu key="submenu" title="Your 💖s earned: &lt;loading&gt;" id="NJH-nj-YtH">
+                        <items>
+                            <menuItem title="Recruit a friend (earn 350 💖s)" id="i7D-54-tUe">
+                                <connections>
+                                    <action selector="openRecruitPanelClicked:" target="Voe-Tx-rLC" id="iKP-7B-9I4"/>
+                                </connections>
+                            </menuItem>
+                            <menuItem isSeparatorItem="YES" id="NNQ-25-2IO"/>
+                            <menuItem title="Earn 💖s faster (uses more CPU)" id="oFN-49-f2d">
+                                <modifierMask key="keyEquivalentModifierMask"/>
+                                <connections>
+                                    <action selector="moreCpuClicked:" target="Voe-Tx-rLC" id="oyw-LW-mGr"/>
+                                </connections>
+                            </menuItem>
+                            <menuItem isSeparatorItem="YES" id="cF3-w4-RHZ"/>
+                            <menuItem title="Donate your 💖s to support:" enabled="NO" id="vij-6n-OP9">
+                                <modifierMask key="keyEquivalentModifierMask"/>
+                            </menuItem>
+                        </items>
+                    </menu>
+                </menuItem>
+                <menuItem title="Your 🏆s accomplished: &lt;loading&gt;" id="1gH-tn-hVH">
+                    <modifierMask key="keyEquivalentModifierMask"/>
+                    <menu key="submenu" title="Your 🏆s accomplished: &lt;loading&gt;" id="XSP-Hj-7Ro"/>
+                </menuItem>
+                <menuItem title="Status: Running" id="nJ8-Tp-7Ry">
+                    <modifierMask key="keyEquivalentModifierMask"/>
+                    <menu key="submenu" title="Status: Running" id="4gH-DA-J5d">
+                        <items>
+                            <menuItem title="Pause" id="P19-Tk-mx3">
+                                <modifierMask key="keyEquivalentModifierMask"/>
+                                <connections>
+                                    <action selector="pauseResumeClicked:" target="Voe-Tx-rLC" id="Y3c-Ge-h0P"/>
+                                </connections>
+                            </menuItem>
+                        </items>
+                    </menu>
+                </menuItem>
+                <menuItem isSeparatorItem="YES" id="X6E-Lo-p5f"/>
                 <menuItem title="Check for updates..." id="n3b-La-WZh">
                     <modifierMask key="keyEquivalentModifierMask"/>
                     <connections>
                         <action selector="checkForUpdates:" target="nx1-4V-6qa" id="9pd-tL-UFK"/>
                     </connections>
                 </menuItem>
-                <menuItem isSeparatorItem="YES" id="24v-QC-CK1"/>
-                <menuItem title="Retrieving donation data..." enabled="NO" id="u8f-bJ-hYY">
-                    <modifierMask key="keyEquivalentModifierMask"/>
-                </menuItem>
-                <menuItem title="Use more CPU (may impact performance)" id="oFN-49-f2d">
-                    <modifierMask key="keyEquivalentModifierMask"/>
-                    <connections>
-                        <action selector="moreCpuClicked:" target="Voe-Tx-rLC" id="oyw-LW-mGr"/>
-                    </connections>
-                </menuItem>
-                <menuItem title="Status: Running" enabled="NO" id="KLP-9j-Rrq">
-                    <modifierMask key="keyEquivalentModifierMask"/>
-                </menuItem>
-                <menuItem title="Pause" id="P19-Tk-mx3">
-                    <modifierMask key="keyEquivalentModifierMask"/>
-                    <connections>
-                        <action selector="pauseResumeClicked:" target="Voe-Tx-rLC" id="Y3c-Ge-h0P"/>
-                    </connections>
-                </menuItem>
-                <menuItem isSeparatorItem="YES" id="X6E-Lo-p5f"/>
                 <menuItem title="Quit" id="k3w-g5-Hgu">
                     <modifierMask key="keyEquivalentModifierMask"/>
                     <connections>
@@ -125,8 +162,143 @@
                     </connections>
                 </menuItem>
             </items>
-            <point key="canvasLocation" x="459.5" y="318.5"/>
+            <point key="canvasLocation" x="599" y="201.5"/>
         </menu>
         <customObject id="nx1-4V-6qa" customClass="SUUpdater"/>
+        <window title="Recruit your friends!" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" oneShot="NO" releasedWhenClosed="NO" showsToolbarButton="NO" visibleAtLaunch="NO" frameAutosaveName="" animationBehavior="default" id="k0r-Zw-76N">
+            <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES"/>
+            <rect key="contentRect" x="109" y="131" width="425" height="270"/>
+            <rect key="screenRect" x="0.0" y="0.0" width="1280" height="777"/>
+            <view key="contentView" id="Je2-F3-rPq">
+                <rect key="frame" x="0.0" y="0.0" width="425" height="270"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" setsMaxLayoutWidthAtFirstLayout="YES" translatesAutoresizingMaskIntoConstraints="NO" id="RgW-IS-yta">
+                        <rect key="frame" x="86" y="233" width="252" height="17"/>
+                        <textFieldCell key="cell" sendsActionOnEndEditing="YES" title="Earn 350 💖s for each friend you recruit!" id="KGd-pt-d12">
+                            <font key="font" metaFont="system"/>
+                            <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                            <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                        </textFieldCell>
+                    </textField>
+                    <button fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="BVX-eZ-kH8">
+                        <rect key="frame" x="180" y="123" width="64" height="87"/>
+                        <buttonCell key="cell" type="square" title="Post" bezelStyle="shadowlessSquare" image="FacebookLogo" imagePosition="above" alignment="center" imageScaling="proportionallyUpOrDown" inset="2" id="Stb-QM-UyF">
+                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                            <font key="font" metaFont="system"/>
+                        </buttonCell>
+                        <connections>
+                            <action selector="facebookPostClicked:" target="Voe-Tx-rLC" id="F85-HO-SUK"/>
+                        </connections>
+                    </button>
+                    <button fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="3l0-bw-UmS">
+                        <rect key="frame" x="310" y="128" width="65" height="82"/>
+                        <buttonCell key="cell" type="square" title="Copy Link" bezelStyle="shadowlessSquare" image="LinkIcon" imagePosition="above" alignment="center" alternateImage="LinkIcon-gray" imageScaling="proportionallyUpOrDown" inset="2" id="ps2-EF-vcs">
+                            <behavior key="behavior" lightByContents="YES"/>
+                            <font key="font" metaFont="system"/>
+                        </buttonCell>
+                        <connections>
+                            <action selector="recruitLinkClicked:" target="Voe-Tx-rLC" id="iWn-G8-V36"/>
+                        </connections>
+                    </button>
+                    <textField hidden="YES" horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="biM-gd-23X">
+                        <rect key="frame" x="308" y="99" width="69" height="21"/>
+                        <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" allowsUndo="NO" sendsActionOnEndEditing="YES" alignment="center" title="Copied!" id="qRd-fG-94F">
+                            <font key="font" metaFont="system"/>
+                            <color key="textColor" red="0.25098040700000002" green="0.50196081400000003" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                            <color key="backgroundColor" name="controlShadowColor" catalog="System" colorSpace="catalog"/>
+                        </textFieldCell>
+                    </textField>
+                    <textField verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="qCu-Fk-KPP" customClass="AutoHighlightTextField" customModule="Compute_for_Humanity" customModuleProvider="target">
+                        <rect key="frame" x="37" y="20" width="351" height="22"/>
+                        <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" allowsUndo="NO" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" drawsBackground="YES" id="f0V-ih-7AW">
+                            <font key="font" metaFont="system"/>
+                            <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
+                            <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                        </textFieldCell>
+                    </textField>
+                    <button fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="hkp-m9-qy4">
+                        <rect key="frame" x="45" y="118" width="70" height="92"/>
+                        <buttonCell key="cell" type="square" title="Tweet" bezelStyle="shadowlessSquare" image="TwitterLogo" imagePosition="above" alignment="center" imageScaling="proportionallyUpOrDown" inset="2" id="DfB-lV-vd2">
+                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                            <font key="font" metaFont="system"/>
+                        </buttonCell>
+                        <connections>
+                            <action selector="tweetClicked:" target="Voe-Tx-rLC" id="MKf-tK-D9X"/>
+                        </connections>
+                    </button>
+                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" setsMaxLayoutWidthAtFirstLayout="YES" translatesAutoresizingMaskIntoConstraints="NO" id="D70-qC-E48">
+                        <rect key="frame" x="66" y="60" width="292" height="17"/>
+                        <textFieldCell key="cell" sendsActionOnEndEditing="YES" title="Share this unique link to invite your friends!" id="vgt-vZ-kuL">
+                            <font key="font" metaFont="system"/>
+                            <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                            <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                        </textFieldCell>
+                    </textField>
+                </subviews>
+            </view>
+            <point key="canvasLocation" x="493.5" y="-447"/>
+        </window>
+        <window title="Claim your special surprise!" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" oneShot="NO" releasedWhenClosed="NO" showsToolbarButton="NO" visibleAtLaunch="NO" frameAutosaveName="" animationBehavior="default" id="TJz-6N-fch">
+            <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES"/>
+            <rect key="contentRect" x="109" y="131" width="485" height="267"/>
+            <rect key="screenRect" x="0.0" y="0.0" width="1280" height="777"/>
+            <view key="contentView" id="XdE-zn-vRx">
+                <rect key="frame" x="0.0" y="0.0" width="485" height="267"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" fixedFrame="YES" setsMaxLayoutWidthAtFirstLayout="YES" translatesAutoresizingMaskIntoConstraints="NO" id="kv5-Rf-Vhf">
+                        <rect key="frame" x="78" y="150" width="328" height="23"/>
+                        <textFieldCell key="cell" sendsActionOnEndEditing="YES" alignment="center" title="To claim your drawing, simply send an email to:" allowsEditingTextAttributes="YES" id="cFQ-BR-HPS">
+                            <font key="font" metaFont="system"/>
+                            <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                            <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                        </textFieldCell>
+                    </textField>
+                    <textField verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="86d-7a-t1O" customClass="AutoHighlightTextField" customModule="Compute_for_Humanity" customModuleProvider="target">
+                        <rect key="frame" x="129" y="116" width="227" height="26"/>
+                        <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" allowsUndo="NO" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" alignment="center" title="jacob@computeforhumanity.org" drawsBackground="YES" usesSingleLineMode="YES" id="JM6-NH-M8e">
+                            <font key="font" metaFont="system"/>
+                            <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
+                            <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                        </textFieldCell>
+                    </textField>
+                    <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" fixedFrame="YES" setsMaxLayoutWidthAtFirstLayout="YES" translatesAutoresizingMaskIntoConstraints="NO" id="etr-oW-TKX">
+                        <rect key="frame" x="93" y="57" width="299" height="42"/>
+                        <textFieldCell key="cell" sendsActionOnEndEditing="YES" alignment="center" title="Be sure to include your snail mail address, along with this special code:" id="edI-56-6VN">
+                            <font key="font" metaFont="system"/>
+                            <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                            <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                        </textFieldCell>
+                    </textField>
+                    <textField verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="IRn-ht-c7J" customClass="AutoHighlightTextField" customModule="Compute_for_Humanity" customModuleProvider="target">
+                        <rect key="frame" x="90" y="23" width="305" height="26"/>
+                        <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" allowsUndo="NO" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" alignment="center" drawsBackground="YES" usesSingleLineMode="YES" id="uHG-Hb-wX0">
+                            <font key="font" metaFont="system"/>
+                            <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
+                            <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                        </textFieldCell>
+                    </textField>
+                    <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" fixedFrame="YES" setsMaxLayoutWidthAtFirstLayout="YES" translatesAutoresizingMaskIntoConstraints="NO" id="dcm-f7-6qb">
+                        <rect key="frame" x="25" y="181" width="434" height="66"/>
+                        <textFieldCell key="cell" sendsActionOnEndEditing="YES" alignment="center" id="OtA-rT-anc">
+                            <font key="font" metaFont="system"/>
+                            <string key="title">As a small token of thanks for being such an awesome Compute for Humanity user, the creator of Compute for Humanity will personally draw you a picture and send it to you in the mail. Fun!</string>
+                            <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                            <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                        </textFieldCell>
+                    </textField>
+                </subviews>
+            </view>
+            <point key="canvasLocation" x="468.5" y="-92.5"/>
+        </window>
+        <userDefaultsController representsSharedInstance="YES" id="sEw-kO-xcQ"/>
     </objects>
+    <resources>
+        <image name="C4HLogo" width="512" height="512"/>
+        <image name="FacebookLogo" width="225" height="225"/>
+        <image name="LinkIcon" width="300" height="300"/>
+        <image name="LinkIcon-gray" width="300" height="300"/>
+        <image name="TwitterLogo" width="88.55999755859375" height="72"/>
+    </resources>
 </document>
