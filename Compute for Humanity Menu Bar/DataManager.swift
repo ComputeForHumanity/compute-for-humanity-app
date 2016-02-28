@@ -16,6 +16,9 @@ class DataManager {
     let nRecruitsKey = "NRecruits"
     let moreCPUKey = "UseMoreCPU"
     
+    // If this value is changed, we must update it in the .xib as well.
+    let heartsPerRecruit = 350
+    
     let fileManager = NSFileManager.defaultManager()
     let dataFileURL: NSURL
     
@@ -160,7 +163,12 @@ class DataManager {
     }
     func getNRecruits() -> Int { return values[nRecruitsKey] as! Int }
     func setNRecruits(val: Int) {
+        let oldVal = getNRecruits()
         values[nRecruitsKey] = val
+        
+        // Add hearts if we recruited new users.
+        setHearts(getHearts() + (val - oldVal) * heartsPerRecruit)
+        
         debouncedWriteToFile.call()
     }
     func getUseMoreCPU() -> Bool { return values[moreCPUKey] as! Bool }
