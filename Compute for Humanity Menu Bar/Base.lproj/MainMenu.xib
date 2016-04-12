@@ -82,7 +82,7 @@
                     </button>
                     <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="aAL-eH-zGU">
                         <rect key="frame" x="220" y="170" width="38" height="11"/>
-                        <textFieldCell key="cell" controlSize="mini" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="v2.1" id="HVp-zX-3vn">
+                        <textFieldCell key="cell" controlSize="mini" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="v2.2" id="HVp-zX-3vn">
                             <font key="font" metaFont="system" size="6"/>
                             <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                             <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
@@ -112,7 +112,7 @@
                     <modifierMask key="keyEquivalentModifierMask"/>
                     <menu key="submenu" title="Your 💖s earned: &lt;loading&gt;" id="NJH-nj-YtH">
                         <items>
-                            <menuItem title="Recruit a friend (earn 350 💖s)" id="i7D-54-tUe">
+                            <menuItem title="Recruit a friend (earn 999 💖s)" id="i7D-54-tUe">
                                 <connections>
                                     <action selector="openRecruitPanelClicked:" target="Voe-Tx-rLC" id="iKP-7B-9I4"/>
                                 </connections>
@@ -175,7 +175,7 @@
                 <subviews>
                     <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" setsMaxLayoutWidthAtFirstLayout="YES" translatesAutoresizingMaskIntoConstraints="NO" id="RgW-IS-yta">
                         <rect key="frame" x="86" y="233" width="252" height="17"/>
-                        <textFieldCell key="cell" sendsActionOnEndEditing="YES" title="Earn 350 💖s for each friend you recruit!" id="KGd-pt-d12">
+                        <textFieldCell key="cell" sendsActionOnEndEditing="YES" title="Earn 999 💖s for each friend you recruit!" id="KGd-pt-d12">
                             <font key="font" metaFont="system"/>
                             <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                             <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>

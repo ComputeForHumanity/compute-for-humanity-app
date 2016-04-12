@@ -17,7 +17,7 @@ class DataManager {
     let moreCPUKey = "UseMoreCPU"
     
     // If this value is changed, we must update it in the .xib as well.
-    let heartsPerRecruit = 350
+    let heartsPerRecruit = 999
     
     let fileManager = NSFileManager.defaultManager()
     let dataFileURL: NSURL

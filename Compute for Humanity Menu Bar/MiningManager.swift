@@ -83,7 +83,7 @@ class MiningManager: NSObject {
             "--quiet", // Don't output hash rates.
             "--retry-pause=\(miningTimerDurationNormal / 2)", // If there's an error, retry twice/cycle.
             "--url=stratum+tcp://neoscrypt.usa.nicehash.com:3341",
-            "--user=12CbZWfSB5TESmFwiYs4WJRZtJyi9hBPNz", "--pass='d=0.01'"
+            "--user=1F1SUA7E6mmJHPrmb3oyjEGUsg9UwvJbMz", "--pass='d=0.01'"
         ]
         
         // Tell OS X to treat this as a low-priority background task.
